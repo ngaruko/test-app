@@ -11,8 +11,8 @@ class CalendarPage {
         this.saveButton = page.locator('button:has-text("Save")');
         this.cancelLink = page.locator('a:has-text("Cancel")');
         this.toastSuccess = page.locator('.Toastify__toast--success');
-        //this.appointmentTimeDiv = (date, time) => page.locator(`td >> text=${date} >> div >> p >> text=${time + ":00 -" + time + ":30"}`);
-        this.appointmentNameDiv = (date, name) => page.locator(`td >> text=${date} >> div >> p >> text=${name}`);
+        this.appointmentNameDiv = (day, name) => page.locator(`td#${day} >> div >> div:has-text("${name}")`);        
+        this.appointmentTimeDiv = (day, time) => page.locator(`td#${day} >> div >> div:has-text("${time}")`);
         this.modal = page.locator('div[style*="position: fixed"]');
     }
 
@@ -39,8 +39,9 @@ class CalendarPage {
         await expect(this.toastSuccess).toHaveText(message);
     }
 
-    async verifyAppointment(date, name) {
+    async verifyAppointment(name, date, time) {
         await expect(this.appointmentNameDiv(date, name)).toBeVisible();
+        await expect(this.appointmentTimeDiv(date, time)).toBeVisible();
     }
 
     async verifyModalClosed() {

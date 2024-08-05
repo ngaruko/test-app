@@ -11,7 +11,8 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in playwright. Tests are in `tests/*.test.js`
+Launches the test runner in playwright. Tests are in `tests/*.test.js` (You might need to run `npx playwright install` at first)
+To view report, run `npx playwright show-report`
 
 # Exercise 2:
 For too many test cases & flaky tests

@@ -37,7 +37,7 @@ const Calendar = () => {
         setIsModalOpen(false);
         setFormData({ name: '', date: '', time: '' });
         sendEmail(email, {name, date, time})
-        res.status(200).send('Email sent')
+        //res.status(200).send('Email sent')
     };
 
     const handleCancel = () => {
@@ -65,12 +65,13 @@ const Calendar = () => {
                 <tbody>
                     <tr>
                         {daysOfWeek.map((day) => (
-                            <td key={day} style={cellStyle}>
+                            <td key={day} id ={day} style={cellStyle}>
                                 {appointments[day] && appointments[day].map((appt, index) => (
                                     <div key={index} style={{ marginBottom: '8px', backgroundColor:'grey' }}>
-                                        <p id="apt-time">{appt.time}:00 -{appt.time}:30 </p>
-                                        <p id= "apt-name">{appt.name}</p> 
+                                        <div id="apt-time">{appt.time}:00 - {appt.time}:30</div>
+                                        <div id= "apt-name">{appt.name}</div> 
                                     </div>
+                                    
                                 ))}
                             </td>
                         ))}
@@ -105,7 +106,7 @@ const Calendar = () => {
                     </div>
                     <div>
                         <label>
-                            Time (e.g., 14:00):
+                            Time (e.g., 14):
                             <input
                                 type="text"
                                 name="time"

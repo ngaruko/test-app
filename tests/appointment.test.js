@@ -15,7 +15,7 @@ test.describe('Calendar Component', () => {
         await calendarPage.fillForm('Meeting with Bede', 'Monday', '14');
         await calendarPage.saveAppointment();
         await calendarPage.verifyToastSuccess('Appointment saved successfully!');
-        await calendarPage.verifyAppointment('Monday', 'Meeting with Bede');
+        await calendarPage.verifyAppointment('Meeting with Bede', 'Monday', '14:00 - 14:30');
         // test email sent > depending on mail service response.
     });
 
