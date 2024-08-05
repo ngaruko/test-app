@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const {sendEmail} = require('./service');
 
+
 const Calendar = () => {
-    const username ="Bede"
+    const location = useLocation();
+    const { email } = location.state || {}
     const [appointments, setAppointments] = useState({});
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [formData, setFormData] = useState({ name: '', date: '', time: '' });
@@ -33,7 +36,7 @@ const Calendar = () => {
 
         setIsModalOpen(false);
         setFormData({ name: '', date: '', time: '' });
-        sendEmail(username, {name, date, time})
+        sendEmail(email, {name, date, time})
         res.status(200).send('Email sent')
     };
 
@@ -48,7 +51,9 @@ const Calendar = () => {
             <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0', borderBottom: '2px solid #ccc' }}>
             <div id="app-name">My app</div>
             <div><input className={'inputButton'} type="button" onClick={setIsModalOpen} value={'New Appointment'} /></div>
-            <div id="username">{username}</div> </div>
+            
+            {email? <div id="username">{email }</div>:<div id="username">Anonymous</div>}
+             </div>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
                 <thead>
                     <tr>
