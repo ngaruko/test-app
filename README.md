@@ -24,3 +24,4 @@ For too many test cases & flaky tests
 - Have utility functions, especially for setup, that can be re-used in many tests, and if possible, which do not use the UI, eg if I want 20 users to test some case, it is more reliable and cheaper to dump those in the db or some API endpoints than add them one by one in the UI.
 - Consider some scalable methods to create test data, like mocks or better yet factories which help to create standardised but customisable data across the test code base
 - Avoid combining too many features in one test file (like I did)
+-  Use `retries` : this can improve results for some intermittently flaky tests
