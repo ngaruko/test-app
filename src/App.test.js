@@ -1,5 +1,7 @@
 // login.spec.js
 const { test, expect } = require('@playwright/test');
+const CalendarPage = require('./calendar.page');
+
 
 test.describe('Login Component', () => {
     test('should display error messages for invalid input and navigate to Calendar on successful login', async ({ page }) => {
@@ -9,6 +11,9 @@ test.describe('Login Component', () => {
         // Fill in email and password fields with invalid data
         await page.fill('#email', 'invalid-email');
         await page.fill('#password', 'short');
+        // test for no password used
+        //test for no email used
+        //Test for case sensitivity if applicable
 
         // Click the login button (which is a Link to /Calendar)
         // await page.click('#login');
@@ -23,8 +28,8 @@ test.describe('Login Component', () => {
         await page.click('a.btn-primary');
 
         // Verify navigation to the calendar page
-        //await page.waitForURL('http://localhost:3000/cle'); // Adjust URL as needed
         await expect(page.url()).toBe('http://localhost:3000/Calendar');
+        // check that username is same as login user
     });
 
     test('should navigate to the registration page on Sign up link click', async ({ page }) => {
@@ -52,7 +57,6 @@ test.describe('Login Component', () => {
     });
 });
 
-const CalendarPage = require('./calendar.page');
 
 test.describe('Calendar Component', () => {
     let calendarPage;
@@ -69,6 +73,16 @@ test.describe('Calendar Component', () => {
         await calendarPage.verifyToastSuccess('Appointment saved successfully!');
         await calendarPage.verifyAppointment('Monday', 'Meeting with Bede');
         // test email sent > depending on mail service response.
+    });
+
+    test('should show erros if invalid data', async () => {
+        await calendarPage.openModal();
+        //Test for :
+        // no data in name 
+        // no data in date
+        // no data or wrong format in time
+        // double booking 
+        //etc
     });
 
     test('should close the modal on cancel', async () => {
