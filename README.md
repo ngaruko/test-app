@@ -11,7 +11,7 @@ You may also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in playwright. Tests are in `src/App.test.js`
+Launches the test runner in playwright. Tests are in `tests/*.test.js`
 
 # Exercise 2:
 For too many test cases & flaky tests
